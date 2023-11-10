@@ -4,3 +4,12 @@
 @import 'tailwindcss/utilities';
 
 /* Your other styles go here */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://db.onlinewebfonts.com/c/cc63ce6e304da54106961b31a1d744a9?family=Apercu');
+@import url('https://db.onlinewebfonts.com/c/d4f20dfedfdf197ed0ac52b09bf25551?family=GT+Walsheim+Pro+Medium+Regular');
+@import url('https://db.onlinewebfonts.com/c/0abeb2471faeb5269db428b9eac2075e?family=GT+Walsheim+Pro+Regular+Regular');
+*{
+  font-family: "GT Walsheim Pro Regular Regular";
+  letter-spacing: 0.5px;
+  /* background-color: black; */
+}
