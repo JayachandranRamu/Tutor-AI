@@ -21,9 +21,9 @@ interface UserNavigationItem {
 
 
 
-function classNames(...classes: (string | boolean | undefined)[]): string {
-  return classes.filter(Boolean).join(' ');
-}
+// function classNames(...classes: (string | boolean | undefined)[]): string {
+//   return classes.filter(Boolean).join(' ');
+// }
 
 const user: User = {
   name: 'Tom Cook',
@@ -49,7 +49,7 @@ const userNavigation: UserNavigationItem[] = [
 export default function Navbar(){
   return (<>
       
-      <div className="min-h-full">
+      <div className="min-h-full min-h-full">
         <Disclosure as="nav" className="bg-black">
           {({ open }) => (
             <>
@@ -58,8 +58,8 @@ export default function Navbar(){
                   <div className="flex items-center">
                     <div className="flex-shrink-0">
                       <img
-                        className="h-8 w-8"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                        className="h-8 w-full"
+                        src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/1ho35tkb7ss6w1inf6di.png"
                         alt="Your Company"
                       />
                     </div>
@@ -69,7 +69,7 @@ export default function Navbar(){
                           <a
                             key={item.name}
                             href={item.href}
-                            className='text-white font-medium  hover:text-[#004aad] '
+                            className='text-white font-medium hover:text-[#004aad] '
                         
                           >
                             {item.name}
