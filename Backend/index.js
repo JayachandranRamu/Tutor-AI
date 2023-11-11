@@ -1,9 +1,11 @@
 const express = require("express");
 const app = express();
 app.use(express.json());
+const { connection } = require("./db");
 require('dotenv').config();
-
 const openAi = require("openai");
+const { interviewRouter } = require("./interviewRouter");
+app.use("/interview", interviewRouter);
 
 const openai = new openAi({
     apiKey: process.env.OPEN_AI_KEY
@@ -28,6 +30,11 @@ app.get("/openai", async (req, res) => {
     }
 });
 
-app.listen(8000, () => {
-    console.log("connected to server")
+app.listen(8000, async () => {
+    try {
+        await connection;
+        console.log("connected to DB")
+    } catch (error) {
+        console.log(error);
+    }
 });
