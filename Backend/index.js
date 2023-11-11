@@ -9,18 +9,18 @@ const openai = new openAi({
     apiKey: process.env.OPEN_AI_KEY
 })
 
-app.get("/getres", async (req, res) => {
+app.get("/openai", async (req, res) => {
     try {
-        const title = req.body.content
+        const prompt = req.body.content
         const response = await openai.chat.completions.create({
             model: "gpt-3.5-turbo",
             messages: [
                 {
                     role: "user",
-                    content: `Come up with a definition for a topic called ${title}`
+                    content: prompt
                 }
             ],
-            max_tokens: 100
+            max_tokens: 1000
         });
         res.send(response.choices[0].message.content);
     } catch (error) {
