@@ -1,7 +1,10 @@
 import React from 'react'
+import Navbar from '../Components/Navbar'
 
 const Dashboard = () => {
   return (
+    <>
+    <Navbar />
     <div> <header className="bg-black text-white shadow">
     <div className="mx-auto max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
       <h1 className="text-2xl font-bold tracking-widest">DASHBOARD</h1>
@@ -12,6 +15,7 @@ const Dashboard = () => {
       {/* <!-- Your content --> */}
     </div>
   </main></div>
+  </>
   )
 }
 

@@ -69,7 +69,7 @@ export default function Navbar(){
                           <a
                             key={item.name}
                             href={item.href}
-                            className='text-white font-medium hover:text-[#004aad] '
+                            className='text-white font-medium hover:text-[#9981de] '
                         
                           >
                             {item.name}
