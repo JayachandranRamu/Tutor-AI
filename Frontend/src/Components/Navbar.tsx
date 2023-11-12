@@ -2,6 +2,7 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition }  from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
+
 interface User {
   name: string;
   email: string;
@@ -33,7 +34,7 @@ const user: User = {
 };
 
 const navigation: NavigationItem[] = [
-  { name: 'Dashboard', href: '/', current: true },
+  { name: 'Dashboard', href: '/dashboard', current: true },
   { name: 'Courses', href: '/courses', current: false },
 //   { name: 'Projects', href: '#', current: false },
 //   { name: 'Calendar', href: '#', current: false },
@@ -46,10 +47,12 @@ const userNavigation: UserNavigationItem[] = [
   { name: 'Sign out', href: '#' },
 ];
 
+let isAuth:any=false;
+
 export default function Navbar(){
   return (<>
       
-      <div className="min-h-full min-h-full">
+      <div className="min-h-full">
         <Disclosure as="nav" className="bg-black">
           {({ open }) => (
             <>
@@ -59,12 +62,12 @@ export default function Navbar(){
                     <div className="flex-shrink-0">
                       <img
                         className="h-8 w-full"
-                        src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/1ho35tkb7ss6w1inf6di.png"
+                        src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/8yslc19ldf4nk5m4tv4w.png"
                         alt="Your Company"
                       />
                     </div>
-                    <div className="  m-auto hidden md:block">
-                      <div className="ml-10 flex items-baseline space-x-4">
+                    <div className="m-auto hidden md:block">
+                      <div className="flex ml-16 items-baseline space-x-4">
                         {navigation.map((item) => (
                           <a
                             key={item.name}
@@ -80,7 +83,7 @@ export default function Navbar(){
                   </div>
                   <div className="hidden md:block">
                     <div className="ml-4 flex items-center md:ml-6">
-                      <button
+                    <button
                         type="button"
                         className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                       >
@@ -157,7 +160,7 @@ export default function Navbar(){
                 </div>
                 <div className="border-t border-gray-700 pb-3 pt-4">
                   <div className="flex items-center px-5">
-                    <div className="flex-shrink-0">
+                 <div className="flex-shrink-0">
                       <img className="h-10 w-10 rounded-full" src={user.imageUrl} alt="" />
                     </div>
                     <div className="ml-3">
@@ -185,7 +188,7 @@ export default function Navbar(){
                       </Disclosure.Button>
                     ))}
                   </div>
-                </div>
+                </div> 
               </Disclosure.Panel>
             </>
           )}
