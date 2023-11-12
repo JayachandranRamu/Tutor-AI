@@ -8,9 +8,11 @@ const openAi = require("openai");
 
 const { interviewRouter } = require("./Router/interviewRouter");
 const { userRouter } = require("./Router/user.router");
+const { historyRouter } = require("./Router/historyRouter");
 app.use(cors())
 app.use("/interview", interviewRouter);
 app.use("/user", userRouter);
+app.use("/history", historyRouter);
 
 const openai = new openAi({
     apiKey: process.env.OPEN_AI_KEY
