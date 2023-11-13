@@ -32,7 +32,7 @@ app.post("/openai", async (req, res) => {
     }
 });
 
-app.listen(8000, async () => {
+app.listen(8080, async () => {
     try {
         await connection;
         console.log("Server Is Running At PORT 8000")

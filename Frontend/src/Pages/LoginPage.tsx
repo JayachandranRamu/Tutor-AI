@@ -1,11 +1,35 @@
-import React, { FormEvent } from 'react'
+import axios from 'axios';
+import React, { FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
     const Navigate=useNavigate();
+    const[email,setEmail]=useState<string>("")
+    const[password,setPassword]=useState<string>("")
 
     const handleSubmit=(e:FormEvent)=>{
-        Navigate("/dashboard")
+        e.preventDefault();
+
+        axios.post('http://localhost:8080/user/login',{email,password}).then((res)=>{
+
+        console.log(res)
+        if(res.data.message=="Something went wrong"){
+            alert("wrong credentials")
+        }
+        else{
+            alert("login successfull")
+           localStorage.setItem("token", res.data.token);
+
+           Navigate("/dashboard")
+       }
+  
+        }).catch((err)=>{
+        console.log(err)
+        })
+
+
+
+
     }
 
   return (
@@ -16,12 +40,12 @@ const LoginPage = () => {
                
                     <div>
                         <label className="block mb-2 text-sm font-medium  dark:text-white">Your Email</label>
-                        <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required />
+                        <input type="email" name="email" value={email} id="email" onChange={(e)=>{setEmail(e.target.value)}} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required />
                     </div>
                   
                     <div>
                         <label className="block mb-2 text-sm font-medium  dark:text-white">Your Password</label>
-                        <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
+                        <input type="password" name="password" value={password} id="password" onChange={(e)=>{setPassword(e.target.value)}} placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
                     </div>
              
                     <div className="flex justify-between">
