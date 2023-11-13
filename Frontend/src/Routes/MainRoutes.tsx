@@ -8,6 +8,7 @@ import Dashboard from '../Pages/Dashboard'
 import Courses from '../Pages/Courses'
 import LoginPage from '../Pages/LoginPage'
 import SignUpPage from '../Pages/SignUpPage'
+import SingleInterviewPage from '../Pages/SingleInterviewPage'
 
 const MainRoutes = () => {
   return (
@@ -19,6 +20,7 @@ const MainRoutes = () => {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/courses" element={<Courses />} />
             <Route path="/interview" element={<InterviewPage />} />
+            <Route path="/interview/:id" element={<SingleInterviewPage />} />
         </Routes>
     </>
   )
