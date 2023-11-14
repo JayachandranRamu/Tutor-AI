@@ -5,8 +5,8 @@ const historySchema = mongoose.Schema({
     VideoLink: String,
     score: String,
     conversation: Array,
-    Interrview_Duration: String,
-    Interview_Time: String
+    Interview_Duration: String,
+    Interview_Time: String,
 });
 const HistoryModel = mongoose.model("history", historySchema);
 
