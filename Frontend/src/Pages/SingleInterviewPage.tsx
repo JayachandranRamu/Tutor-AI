@@ -53,16 +53,10 @@ const Navigate=useNavigate();
       }
     }
 
-    // Set the selected voice for the utterance
+   
 
 
 
-
-    // if(data.gender=="Female"){
-    //   message.voice = voices[8];
-    // }else{
-    //   message.voice = voices[8];
-    // }
 
 
 
@@ -70,29 +64,14 @@ const Navigate=useNavigate();
 
 
     window.speechSynthesis.speak(message);
-    // Event listeners to handle speech events
-    // utterance.onstart = () => {
-    //   setIsSpeaking(true);
-    // };
-
-    // utterance.onend = () => {
-    //   setIsSpeaking(false);
-    // };
-
-    // utterance.onerror = () => {
-    //   setIsSpeaking(false);
-    //   console.error('Speech synthesis error');
-    // };
-
-    // // Start speaking
-    // window.speechSynthesis.speak(utterance);
+  
   };
 
   const handleStop = () => {
     window.speechSynthesis.cancel();
-    // setIsSpeaking(false);
+   
   };
-  //----
+ 
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const {
@@ -137,29 +116,7 @@ const Navigate=useNavigate();
       alert("Type Anything...");
     }
   };
-  //  const HandleSubmit=()=>{
-  // let a=text.length>transcript.length?text:transcript;
-
-  // if(a.length!=0){
-  //   setLoading((prev:any)=>!prev);
-  // let obj={role:"user",content:a.trim()};
-  // setConversation((prev:any)=>[...prev,obj]);
-  // let newObj=[...conversation,obj];
-
-  // // OpenApiChat(newObj).then((res:any)=>{
-
-  // //   setConversation((prev:any)=>[...prev,res.data])})
-
-  // setText("");
-  // SpeechRecognition.stopListening();
-  // resetTranscript();
-  // setLoading((prev:any)=>!prev);
-  // }else{
-  //   alert("Type Anything...")
-  // }
-
-  //  }
-
+ 
 
   const {
     transcript,
@@ -192,7 +149,10 @@ const Navigate=useNavigate();
 
     setLoading((prev: any) => !prev);
     setMode(!mode);
-    let obj = { role: "user", content: "End The Interview And Give Me The Overall Score In A Details Manner" };
+    let obj = { role: "user", content: `stop the interview. And return the feedback object based on the your evaluation of the questions answered by me. You should only return the feedback. the feedback object should contain
+      strengths,improvementAreas,overallScore`
+    }
+
     setConversation((prev: any) => [...prev, obj]);
     let newObj = [...conversation, obj];
 
