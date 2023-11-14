@@ -1,8 +1,12 @@
 import axios from 'axios';
 import React, { FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { LoginUserRequest } from '../Utilis/api';
+import { useDispatch } from 'react-redux';
+import { LOGIN_SUCCESSFUL } from '../Redux/ActionType';
 
 const LoginPage = () => {
+    const dispatch=useDispatch();
     const Navigate=useNavigate();
     const[email,setEmail]=useState<string>("")
     const[password,setPassword]=useState<string>("")
@@ -10,17 +14,17 @@ const LoginPage = () => {
     const handleSubmit=(e:FormEvent)=>{
         e.preventDefault();
 
-        axios.post('http://localhost:8080/user/login',{email,password}).then((res)=>{
-
-        console.log(res)
-        if(res.data.message=="Something went wrong"){
-            alert("wrong credentials")
+       LoginUserRequest({email,password}).then((res)=>{
+        console.log(res.data)
+        if(res.data.message=="Successfully logged in"){
+            dispatch({type:LOGIN_SUCCESSFUL,payload:res.data.user});
+            alert("User Logined Successfull...")
+            localStorage.setItem("token", res.data.token);
+            localStorage.setItem("user", JSON.stringify(res.data.user));
+            Navigate("/dashboard")
         }
         else{
-            alert("login successfull")
-           localStorage.setItem("token", res.data.token);
-
-           Navigate("/dashboard")
+          alert(res.data.message)
        }
   
         }).catch((err)=>{
@@ -51,7 +55,7 @@ const LoginPage = () => {
                     <div className="flex justify-between">
 <div className="flex items-start">
     <div className="flex items-center h-5">
-        <input id="remember" type="checkbox" value="" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-purple-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
+        <input id="remember" type="checkbox" value="" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-purple-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"/>
     </div>
     <label  className="ms-2 text-sm font-medium  dark:text-gray-300">Remember Me</label>
 </div>

@@ -1,6 +1,8 @@
+import { LOGIN_SUCCESSFUL } from "./ActionType";
 
+let token=localStorage.getItem("token") || "";
 
-
+let userData: any = JSON.parse(localStorage.getItem("user") || "{}");
 
 type ActionType = string;
 
@@ -16,15 +18,15 @@ interface InitialStateType {
 }
 
 const initialState: InitialStateType = {
-  user: null, 
-  isAuth: false,
+  user: userData? userData : "", 
+  isAuth: token ? true : false,
 };
 
 
 export const reducer = (state: InitialStateType = initialState, action: Action): InitialStateType => {
   switch (action.type) {
-    case 'LOGIN_SUCCESSFUL':
-      return { user: action.payload, isAuth: true };
+    case LOGIN_SUCCESSFUL:
+      return {...state, user: action.payload, isAuth: true };
     default:
       return state;
   }

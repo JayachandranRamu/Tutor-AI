@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { UserRegister } from '../Utilis/api'
 
 const SignUpPage = () => {
     const[name,setName]=useState<string>("")
@@ -15,13 +16,13 @@ const SignUpPage = () => {
        // Navigate("/login")
 
        e.preventDefault();
-axios.post('http://localhost:8080/user/register',{name,email,password}).then((res)=>{
+       let obj={name,email,password,avatar:"https://img.freepik.com/premium-photo/man-with-glasses-tie-with-tie-it_745528-2818.jpg"}
+UserRegister(obj).then((res)=>{
   console.log(res)
-  //const AlreadyPresent = res.data.userAlreadyPresent
   if(res.data.message=="User is already present, please login.") {
-    alert("user already exists with this email,please login")
+    alert("User Already Exists With This Email, Please Login...")
 }else{
-      alert("user registerd successfully ,please login")
+      alert("User Registerd Successfully, Please Login...")
       Navigate("/login")
   }
 }).catch((err)=>{
