@@ -8,6 +8,8 @@ import Dashboard from '../Pages/Dashboard'
 import Courses from '../Pages/Courses'
 import LoginPage from '../Pages/LoginPage'
 import SignUpPage from '../Pages/SignUpPage'
+import SingleInterviewPage from '../Pages/SingleInterviewPage'
+import ReportPage from '../Pages/InterviewPage'
 
 const MainRoutes = () => {
   return (
@@ -17,8 +19,9 @@ const MainRoutes = () => {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/courses" element={<Courses />} />
-            <Route path="/interview" element={<InterviewPage />} />
+            <Route path="/interview" element={<Courses />} />
+           <Route path='/report/:id' element={<ReportPage />}/>
+            <Route path="/interview/:id" element={<SingleInterviewPage />} />
         </Routes>
     </>
   )

@@ -26,7 +26,7 @@ const HomePage = () => {
         <h1 className="mb-4 text-4xl font-extrabold  leading-none  md:text-5xl lg:text-6xl dark:text-white">Decode Your Career <br /> Elevate with <span className='text-purple-500'>AI Interviews</span></h1>
         <p className="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">Empower your journey to success by mastering interviews with precision on our <br /> AI-enhanced platform.</p>
         <div className="m-auto">
-            <a href="/login" className="inline-flex  justify-center items-center w-[200px] py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-purple-800 hover:bg-purple-900 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+            <a href="/login" className="inline-flex justify-center items-center w-[200px] py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-purple-800 hover:bg-purple-900 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
                 GET STARTED
                 
             </a>
