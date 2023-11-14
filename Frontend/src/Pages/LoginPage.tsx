@@ -3,7 +3,8 @@ import React, { FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { LoginUserRequest } from '../Utilis/api';
 import { useDispatch } from 'react-redux';
-import { LOGIN_SUCCESSFUL } from '../Redux/ActionType';
+import { LOGIN_SUCCESSFUL } from '../redux/ActionType';
+
 
 const LoginPage = () => {
     const dispatch=useDispatch();

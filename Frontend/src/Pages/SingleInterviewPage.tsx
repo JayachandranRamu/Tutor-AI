@@ -5,11 +5,11 @@ import { AddHistory, GetSingleCourseData, OpenApiChat } from '../Utilis/api'
 
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import "../index.css"
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from "react-redux"
 const SingleInterviewPage = () => {
   const userData = useSelector((data: any) => data.AuthReducer.user);
-
+const Navigate=useNavigate();
 
   const { id } = useParams();
   let [data, setData] = useState<any>("")
@@ -40,16 +40,16 @@ const SingleInterviewPage = () => {
     //   console.log(data.gender)
     if (data.gender == "Female") {
       if (v) {
-        message.voice = v[4]
+        message.voice = v[5]
       } else if (selectedVoice) {
-        message.voice = selectedVoice[4]
+        message.voice = selectedVoice[5]
       }
 
     } else {
       if (v) {
-        message.voice = v[5]
+        message.voice = v[6]
       } else if (selectedVoice) {
-        message.voice = selectedVoice[5]
+        message.voice = selectedVoice[6]
       }
     }
 
@@ -183,7 +183,6 @@ const SingleInterviewPage = () => {
     startListen();
     startRecording();
   }
-
   const EndInterview = () => {
     resetTranscript();
     stopRecording();
@@ -192,8 +191,8 @@ const SingleInterviewPage = () => {
 
 
     setLoading((prev: any) => !prev);
-
-    let obj = { role: "user", content: "End The Interview And Give Me The Score" };
+    setMode(!mode);
+    let obj = { role: "user", content: "End The Interview And Give Me The Overall Score In A Details Manner" };
     setConversation((prev: any) => [...prev, obj]);
     let newObj = [...conversation, obj];
 
@@ -335,25 +334,25 @@ const SingleInterviewPage = () => {
       <main>
         <div className="mx-auto max-w-7xl py-6 px-8 sm:px-6 lg:px-8">
           <div className='flex w-full flex-col  justify-between md:flex-row'>
-            <div className='mx-auto md:mx-3    md:w-[71%]   '>
+          <div className='mx-auto md:mx-3    md:w-[71%]   '>
               <div className='flex flex-col justify-between items-center w-full '>
 
 
-                <div className=' my-2  border rounded-[10px] bg-gray-900 border-gray-300 w-full  md:w-[100%] '>
-                  <img className='rounded-[10px]' src={data?.interviewerImage} alt="" />
-                  {/* <img className="w-[30%] p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 m-auto" alt="Tailwind CSS chat bubble component" src={data.interviewerImage} /> */}
-                </div>
-                <div className='  my-2   border rounded-[10px]   bg-gray-900 border-gray-300 w-full md:w-[100%]'>
-                  <div>
-
-
-                    <video width="100%" height="180" className='rounded-[10px]'
-                      ref={videoRef}
-                      autoPlay
-                      muted
-                    />
-
-                    {/* { mediaBlobUrl && (
+  
+              <div className=' my-2  border rounded-[10px] p-[20px]  bg-gray-900 border-gray-300 w-full  md:w-[100%] '>
+  <img className='rounded-[50%] m-auto w-[50%] md:w-[30%]' src="https://static.vecteezy.com/system/resources/previews/010/054/157/original/chat-bot-robot-avatar-in-circle-round-shape-isolated-on-white-background-stock-illustration-ai-technology-futuristic-helper-communication-conversation-concept-in-flat-style-vector.jpg" alt="" />
+</div>
+<div className='  my-2   border rounded-[10px]   bg-gray-900 border-gray-300 w-full md:w-[100%]'>
+<div>
+          
+         
+              <video width="100%" height="180" className='rounded-[10px]'
+                  ref={videoRef}
+                  autoPlay
+                  muted
+              />
+          
+         {/* { mediaBlobUrl && (
               <div>
                   <p>Recorded Video:</p>
                   <video
@@ -364,17 +363,17 @@ const SingleInterviewPage = () => {
                   />
               </div>
           )}  */}
-
-                  </div>
-
-                </div>
+    
+      </div>
+     
+</div>
               </div>
 
             </div>
 
             <div className='w-full mx-auto md:ml-[5px]   '>
 
-              <div className='w-full h-[80vh] flex flex-col justify-between my-2 border rounded-[10px] p-[20px] md:h-[81vh] bg-gray-900 border-gray-300'>
+            <div className='w-full h-[80vh] flex flex-col justify-between my-2 border rounded-[10px] p-[20px] md:h-[81vh] bg-gray-900 border-gray-300'>
                 <div className='overflow-auto example' >
                   {conversation.length > 1 &&
 
@@ -476,6 +475,18 @@ const SingleInterviewPage = () => {
               </div>
             </div>
           </div>
+          
+                    { mediaBlobUrl && (
+              <div>
+                  <p>Recorded Video (Download If You Want):</p>
+                  <video
+                      src={mediaBlobUrl}
+                      controls
+                     
+                      loop
+                  />
+              </div>
+          )} 
         </div>
       </main></div>
   )

@@ -11,6 +11,7 @@ import SignUpPage from '../Pages/SignUpPage'
 import SingleInterviewPage from '../Pages/SingleInterviewPage'
 import ReportPage from '../Pages/InterviewPage'
 
+
 const MainRoutes = () => {
   return (
     <>
@@ -22,6 +23,7 @@ const MainRoutes = () => {
             <Route path="/interview" element={<Courses />} />
            <Route path='/report/:id' element={<ReportPage />}/>
             <Route path="/interview/:id" element={<SingleInterviewPage />} />
+          
         </Routes>
     </>
   )
