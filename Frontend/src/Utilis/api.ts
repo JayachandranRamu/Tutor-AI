@@ -1,6 +1,6 @@
 import axios from "axios"
 
-let URL="http://localhost:8000";
+let URL="https://tutorai-57v8.onrender.com";
 
 let UserURL=URL+"/user";
 

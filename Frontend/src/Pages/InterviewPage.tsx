@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { GetSingleHistoryData } from '../Utilis/api';
 import jsPDF from 'jspdf';
 import { useSelector } from 'react-redux';
+import Navbar from '../Components/Navbar';
 
 const ReportPage = () => {
 
@@ -50,7 +51,9 @@ GetSingleHistoryData(id).then(res=>{
   },[])
 
   return (
-    <div> <header className="bg-black text-white shadow">
+    <div> 
+      <Navbar />
+      <header className="bg-black text-white shadow">
     <div className="mx-auto max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
       <h1 className="text-2xl font-bold tracking-widest">INTERVIEW REPORT :-</h1>
     </div>
@@ -58,10 +61,54 @@ GetSingleHistoryData(id).then(res=>{
     <div className="mx-auto max-w-7xl px-4 py-2 sm:px-6 lg:px-8">
       {/* <!-- Your content --> */}
       
-        <p className='text-lg'>INTERVIEW : <span className='text-gray-400 font-[Poppins]'>{data?.interview_name}</span></p>
-        <p  className='text-lg'>INTERVIEWER : <span className='text-gray-400 font-[Poppins]'>{data?.interviewee_name}</span></p>
-        <p  className='text-lg'>SCORE : <span className='text-gray-400 font-[Poppins]'>{data?.score}</span></p>
-        <p  className='text-lg'>CONVERSATION :</p>
+
+{/* <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table className="w-full text-md text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    
+        <tbody>
+        <tr className=" border-gray-200 dark:border-gray-700">
+                <th scope="row" className="px-6 py-4 font-medium  whitespace-nowrap dark:text-white dark:bg-gray-800">
+                    INTERVIEW :
+                </th>
+                <td className="px-6 py-4">
+                {data?.interview_name}
+                </td>
+                
+            </tr>
+            <tr className=" border-gray-200 dark:border-gray-700">
+                <th scope="row" className="px-6 py-4 font-medium  whitespace-nowrap  dark:text-white dark:bg-gray-800">
+                INTERVIEWEE :
+                </th>
+                <td className="px-6 py-4">
+                {data?.interviewee_name}
+                </td>
+                
+            </tr>
+            <tr className=" border-gray-200 dark:border-gray-700">
+                <th scope="row" className="px-6 py-4 font-medium  whitespace-nowrap  dark:text-white dark:bg-gray-800">
+                   FEEDBACK :
+                </th>
+                <td className="px-6 py-4">
+                {data?.score}
+                </td>
+                
+            </tr>
+            <tr className=" border-gray-200 dark:border-gray-700">
+                <th scope="row" className="px-6 py-4 font-medium  whitespace-nowrap  dark:text-white dark:bg-gray-800">
+                CONVERSATION :-
+                </th>
+              
+                
+            </tr>
+            
+        </tbody>
+    </table>
+</div> */}
+
+        <p className='text-lg mt-2'>INTERVIEW  :  <span className='text-gray-400 font-[Poppins]'>{data?.interview_name}</span></p>
+        <p  className='text-lg  mt-2'>INTERVIEWER : <span className='text-gray-400 font-[Poppins]'>{data?.interviewee_name}</span></p>
+        <p  className='text-lg  mt-2'>FEEDBACK : <span className='text-gray-400 font-[Poppins]'>{data?.score}</span></p> 
+         <p  className='text-lg my-2'>CONVERSATION :</p> 
         <div className='w-full h-[80vh] flex flex-col justify-between my-2 border rounded-[10px] p-[20px] md:h-[81vh] bg-gray-900 border-gray-300'>
                 <div className='overflow-auto example' >
                 
