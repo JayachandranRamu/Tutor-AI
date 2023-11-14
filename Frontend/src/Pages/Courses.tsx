@@ -17,7 +17,7 @@ GetCourseData().then(res=>setData(res.data))
     <Navbar />
     <div> <header className="bg-black text-white shadow">
     <div className="mx-auto max-w-7xl px-8 py-3 sm:px-8 lg:px-8">
-      <h1 className="text-2xl font-bold tracking-widest">COURSES</h1>
+      <h1 className="text-2xl font-bold tracking-widest">INTERVIEWS</h1>
     </div>
   </header>
   <main>
@@ -51,7 +51,7 @@ GetCourseData().then(res=>setData(res.data))
 
           </div>
           <div >
-            <a href="/login" className="inline-flex  justify-center mt-3 border items-center w-[100%] py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-purple-800 hover:bg-purple-900 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+            <a href={"/interview/"+el._id} className="inline-flex  justify-center mt-3 border items-center w-[100%] py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-purple-800 hover:bg-purple-900 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
             START INTERVIEW
                 
             </a>
