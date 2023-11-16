@@ -14,7 +14,7 @@ const Navigate=useNavigate();
   const { id } = useParams();
   let [data, setData] = useState<any>("")
   const [loading, setLoading] = useState<any>(false);
-  const [selectedVoice, setSelectedVoice] = useState<any>("")
+
   const [text, setText] = useState<any>("")
   const [mode, setMode] = useState<any>(false)
   const [conversation, setConversation] = useState<any>([])
@@ -29,38 +29,18 @@ const Navigate=useNavigate();
 
   const handleSpeak = (dat: any) => {
 
+    
     const message = new SpeechSynthesisUtterance(dat);
 
-
+  
     // const voices = window.speechSynthesis.getVoices();
 
-    let v = fetchVoices();
-    console.log("v", v)
+  
     // Choose a specific language (e.g., English)
     //   console.log(data.gender)
-    if (data.gender == "Female") {
-      if (v) {
-        message.voice = v[5]
-      } else if (selectedVoice) {
-        message.voice = selectedVoice[5]
-      }
-
-    } else {
-      if (v) {
-        message.voice = v[6]
-      } else if (selectedVoice) {
-        message.voice = selectedVoice[6]
-      }
-    }
-
    
 
-
-
-
-
-
-
+   
 
 
     window.speechSynthesis.speak(message);
@@ -82,7 +62,7 @@ const Navigate=useNavigate();
   } = useReactMediaRecorder({ screen: true });
 
   const HandleSubmit = async () => {
-    fetchVoices();
+   
     let a = text.length > transcript.length ? text : transcript;
 
 
@@ -135,7 +115,7 @@ const Navigate=useNavigate();
   const StartInterview = () => {
     let d = new Date();
     setDate_Time(d.toUTCString());
-    fetchVoices();
+ 
     setMode(!mode);
     startListen();
     startRecording();
@@ -143,13 +123,13 @@ const Navigate=useNavigate();
   const EndInterview = () => {
     resetTranscript();
     stopRecording();
-
+alert("Your Interview Has Ended... Please Wait For Some Time To Get FeedBack On The Chat... If You Want To Download Video, You Have To Wait For Some Times To Get It Uploaded... ")
 
 
 
     setLoading((prev: any) => !prev);
     setMode(!mode);
-    let obj = { role: "user", content: `stop the interview. And return the feedback object based on the your evaluation of the questions answered by me. You should only return the feedback. the feedback object should contain
+    let obj = { role: "user", content: `stop the interview. And return the feedback based on the your evaluation of the questions answered by me. You should only return the feedback. the feedback  should contain
       strengths,improvementAreas,overallScore`
     }
 
@@ -179,61 +159,30 @@ const Navigate=useNavigate();
       console.error("API call error:", error);
     } finally {
 
-
-
     }
-
-
-
-
-
 
   }
 
 
-  const fetchVoices = () => {
-    const voices = window.speechSynthesis.getVoices();
-    console.log(voices)
-    setSelectedVoice(voices)
-    return voices;
-  };
-
-  console.log(conversation)
+ 
   useEffect(() => {
 
 
-    fetchVoices();
-
+    
+    
     GetSingleCourseData(id).then(res => {
       setData(res.data)
 
       let a = res.data.prompt;
 
 
+      setConversation( a);
+  
 
-      setLoading((prev: any) => !prev);
-
-      let obj = { role: "user", content: a.trim() };
-      setConversation((prev: any) => [...prev, obj]);
-      let newObj = [...conversation, obj];
-
-      try {
-        OpenApiChat(newObj).then((res: any) => {
-          setConversation((prev: any) => [...prev, res.data])
-
-
-          setLoading((prev: any) => !prev);
-          handleSpeak(res.data.content);
-        })
-      } catch (error) {
-        console.error("API call error:", error);
-      } finally {
-
-        setText("");
-        SpeechRecognition.stopListening();
-        resetTranscript();
-
-      }
+       
+          handleSpeak(a[1].content);
+        
+     
 
 
 
@@ -274,7 +223,7 @@ const Navigate=useNavigate();
       <div className="mx-auto max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
         <div className='flex justify-between items-center px-4'>
           <div>
-            <h1 className="text-2xl font-bold tracking-widest uppercase">{data?.name} <span className='uppercase'>•    {status == "idle" ? "Ready to record" : status}</span></h1>
+            <h1 className="text-20 font-bold tracking-widest uppercase md:text-2xl">{data?.name} <span className='uppercase'>•    {status == "idle" ? "Ready to record" : status}</span></h1>
           </div>
           <div>
             {!mode ? <a onClick={StartInterview} className="inline-flex  justify-center  border items-center  py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-purple-800 hover:bg-purple-900 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">

@@ -5,7 +5,7 @@ const interviewSchema = mongoose.Schema({
     timing: Object,
     type: String,
     topics: Array,
-    chatGPTPrompt: String
+    chatGPTPrompt: Array
 })
 const InterviewModel = mongoose.model("interviewDetail", interviewSchema);
 module.exports = { InterviewModel };
