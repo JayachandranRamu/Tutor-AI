@@ -1,6 +1,6 @@
 import axios from "axios"
 
-let URL="https://tutor-ai-backend.vercel.app/";
+let URL="https://tutor-ai-backend.vercel.app";
 
 let UserURL=URL+"/user";
 
